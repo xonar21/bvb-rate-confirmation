@@ -205,8 +205,19 @@
   @media print{
     body{background:#fff;}
     .toolbar{display:none;}
-    .sheet{margin:0;box-shadow:none;width:auto;min-height:auto;page-break-after:always;}
-    .sheet:last-child{page-break-after:auto;}
+    .sheet{
+      margin:0;
+      box-shadow:none;
+      width:auto;
+      height:calc(11in - 0.64in);
+      min-height:calc(11in - 0.64in);
+      padding-bottom:0.55in;
+      position:relative;
+      page-break-after:always;
+      break-after:page;
+    }
+    .sheet:last-child{page-break-after:auto;break-after:auto;}
+    .pagemark{bottom:0.18in;}
     .fld[data-print-field="editor"]{display:none !important;}
     .print-fld{
       display:block !important;
@@ -259,7 +270,7 @@
 
   <!-- pickup -->
   <div class="section">
-    <div class="sec-head"><span class="tick"></span><h2>Shipper — Pickup</h2><span class="badge">Stop 1</span></div>
+    <div class="sec-head"><span class="tick"></span><h2>Shipper — Pickup</h2></div>
     <div class="stop-body">
       <div class="left">
         <div class="field-block"><span class="lbl">Shipper Name &amp; Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
@@ -274,7 +285,7 @@
 
   <!-- delivery -->
   <div class="section">
-    <div class="sec-head"><span class="tick"></span><h2>Consignee — Delivery</h2><span class="badge">Stop 2</span></div>
+    <div class="sec-head"><span class="tick"></span><h2>Consignee — Delivery</h2></div>
     <div class="stop-body">
       <div class="left">
         <div class="field-block"><span class="lbl">Consignee Name &amp; Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
