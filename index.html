@@ -48,7 +48,7 @@
   /* ---------- page ---------- */
   .sheet{
     width:8.5in; min-height:11in; background:#fff; margin:88px auto 28px;
-    padding:0.46in 0.5in 0.4in; position:relative;
+    padding:0.36in 0.5in 0.4in; position:relative;
     box-shadow:0 8px 40px rgba(0,0,0,.4);
   }
   .sheet+ .sheet{margin-top:0;}
@@ -65,10 +65,10 @@
   .rule{height:3px;background:var(--navy);margin:9px 0 0;position:relative;border-radius:2px;}
 
   /* ---------- generic field ---------- */
-  .lbl{font-size:7.6px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);}
+  .lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);}
   .lbl .gold{color:var(--gold);}
   .fld{
-    font-family:'IBM Plex Sans';font-size:11px;font-weight:500;color:var(--ink);
+    font-family:'IBM Plex Sans';font-size:11px;font-weight:500;color:var(--navy);
     min-height:16px; line-height:1.32; outline:none; white-space:pre-wrap; word-break:break-word;
     -webkit-user-select:text; user-select:text;
   }
@@ -114,8 +114,8 @@
   .tbl-title h2{font-family:'Archivo';font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);margin:0;}
   table{width:100%;border-collapse:collapse;table-layout:fixed;}
   .ship th,.ship td{border:1px solid var(--line);padding:0;vertical-align:top;}
-  .ship thead th{background:var(--navy);color:#fff;font-size:7.4px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;text-align:left;}
-  .ship thead .grp{background:var(--navy-2);text-align:center;font-size:8px;letter-spacing:.1em;}
+  .ship thead th{background:var(--navy);color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;text-align:left;}
+  .ship thead .grp{background:var(--navy-2);text-align:center;font-size:9px;letter-spacing:.1em;}
   .ship td .fld{padding:6px;min-height:30px;}
   .ship td.num .fld{text-align:center;}
 
@@ -140,7 +140,7 @@
     font-family:'Archivo';
     font-weight:700;
     font-size:13px;
-    color:var(--gold-2);
+    color:var(--navy);
   }
   .fees .desc .fld{
     padding:7px 11px;
@@ -152,7 +152,7 @@
   .fees .total .amt{padding:0;background:#fff;}
   .fees .total .amt .fld{
     background:#fff;
-    color:var(--gold-2);
+    color:var(--navy);
     font-family:'Archivo';
     font-weight:700;
     font-size:13px;
@@ -189,18 +189,18 @@
   .terms-head img{height:62px;display:block;}
   .terms-head h1{font-family:'Archivo';font-weight:800;font-size:16px;letter-spacing:-.01em;text-transform:uppercase;color:var(--navy);margin:0;}
   .terms-head h1 small{display:block;font-size:8.5px;letter-spacing:.16em;color:var(--gold);font-weight:700;margin-top:2px;}
-  .intro{font-size:8.6px;line-height:1.5;color:var(--ink);margin:11px 0 9px;font-weight:500;text-align:justify;hyphens:auto;}
+  .intro{font-size:10.6px;line-height:1.5;color:var(--navy);margin:11px 0 9px;font-weight:700;text-align:justify;hyphens:auto;}
   ol.terms{margin:0;padding-left:16px;columns:1;}
-  ol.terms li{font-size:8.2px;line-height:1.45;margin-bottom:3.5px;color:#2a313c;text-align:justify;hyphens:auto;}
+  ol.terms li{font-size:10.2px;line-height:1.45;margin-bottom:3.5px;color:var(--navy);font-weight:700;text-align:justify;hyphens:auto;}
   ol.terms li strong{color:var(--navy);}
-  .ins-para{font-size:8.2px;line-height:1.5;color:#2a313c;margin:9px 0;text-align:justify;hyphens:auto;}
-  .accept{font-size:8.6px;font-weight:700;color:var(--navy);background:#f3f1e6;border-left:3px solid var(--gold);padding:7px 10px;border-radius:0 5px 5px 0;margin-top:8px;}
+  .ins-para{font-size:10.2px;line-height:1.5;color:var(--navy);margin:9px 0;font-weight:700;text-align:justify;hyphens:auto;}
+  .accept{font-size:10.6px;font-weight:700;color:var(--navy);background:#f3f1e6;border-left:3px solid var(--gold);padding:7px 10px;border-radius:0 5px 5px 0;margin-top:8px;}
 
   .accept-grid{margin-top:14px;display:grid;grid-template-columns:repeat(12,1fr);gap:10px 16px;padding-top:13px;}
   .sig-cell{grid-column:span 4;display:flex;flex-direction:column;}
   .sig-cell.w6{grid-column:span 6;}
   .sig-cell .fld{border-bottom:1.5px solid var(--navy);min-height:19px;margin-bottom:3px;}
-  .sig-cell .lbl{font-size:7.6px;}
+  .sig-cell .lbl{font-size:10px;}
 
   @media print{
     body{background:#fff;}
@@ -208,21 +208,28 @@
     .sheet{
       margin:0;
       box-shadow:none;
-      width:auto;
-      height:calc(11in - 0.64in);
-      min-height:calc(11in - 0.64in);
-      padding-bottom:0.55in;
+      width:8.5in;
+      height:11in;
+      min-height:11in;
+      padding-bottom:0.22in;
       position:relative;
       page-break-after:always;
       break-after:page;
     }
     .sheet:last-child{page-break-after:auto;break-after:auto;}
-    .pagemark{bottom:0.18in;}
+    .pagemark{
+      position:static;
+      margin-top:auto;
+      padding-top:0.12in;
+    }
+    .foot + .pagemark{
+      margin-top:0;
+    }
     .fld[data-print-field="editor"]{display:none !important;}
     .print-fld{
       display:block !important;
       background:transparent !important;
-      color:#000 !important;
+      color:var(--navy) !important;
       font-family:Arial, Helvetica, sans-serif !important;
       -webkit-user-select:text !important;
       user-select:text !important;
@@ -239,13 +246,21 @@
       content:attr(data-ph);
       color:#9aa3ae;
     }
+    .fees .total .amt .print-fld{
+      color:var(--navy) !important;
+      font-family:'Archivo', Arial, Helvetica, sans-serif !important;
+      font-size:13px !important;
+      font-weight:700 !important;
+      text-align:right !important;
+      padding:7px 11px !important;
+    }
     .fld:focus{background:transparent;}
     .sheet, .section, .cell, .ship td, .fees table, .sign-row, .accept-grid{
       break-inside:avoid;
       page-break-inside:avoid;
     }
   }
-  @page{size:letter;margin:0.32in 0;}
+  @page{size:letter;margin:0;}
 </style>
 </head>
 <body>
@@ -262,7 +277,7 @@
   <div class="hdr">
     <img class="logo" src="full-logo.png" alt="BVB — Best Value Brokerage">
     <div class="title-wrap">
-      <h1>Carrier Rate &amp;<br>Load Confirmation</h1>
+      <h1>Carrier Rate and<br>Load Confirmation</h1>
       <div class="sub">Best Value Brokerage</div>
     </div>
   </div>
@@ -270,10 +285,9 @@
 
   <!-- meta grid -->
   <div class="meta">
-    <div class="cell fill span3"><span class="lbl">Load Number</span><div class="fld" contenteditable data-ph="—"></div></div>
-    <div class="cell span3"><span class="lbl">Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY"></div></div>
-    <div class="cell span3"><span class="lbl">Broker Contact</span><div class="fld" contenteditable data-ph="Name"></div></div>
-    <div class="cell span3"><span class="lbl">Broker Phone</span><div class="fld" contenteditable data-ph="(000) 000-0000"></div></div>
+    <div class="cell fill span4"><span class="lbl">Load Number</span><div class="fld" contenteditable data-ph="—"></div></div>
+    <div class="cell span4"><span class="lbl">Broker Contact</span><div class="fld" contenteditable data-ph="Name"></div></div>
+    <div class="cell span4"><span class="lbl">Broker Phone</span><div class="fld" contenteditable data-ph="(000) 000-0000"></div></div>
 
     <div class="cell span6"><span class="lbl">Carrier Name</span><div class="fld" contenteditable data-ph="Full carrier / company name (grows for long names)"></div></div>
     <div class="cell span3"><span class="lbl">Carrier MC&nbsp;#</span><div class="fld" contenteditable data-ph="—"></div></div>
@@ -285,7 +299,7 @@
     <div class="sec-head"><span class="tick"></span><h2>Shipper — Pickup</h2></div>
     <div class="stop-body">
       <div class="left">
-        <div class="field-block"><span class="lbl">Shipper Name &amp; Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
+        <div class="field-block"><span class="lbl">Shipper Name and Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
         <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  ·  time"></div></div>
       </div>
       <div class="right">
@@ -300,7 +314,7 @@
     <div class="sec-head"><span class="tick"></span><h2>Consignee — Delivery</h2></div>
     <div class="stop-body">
       <div class="left">
-        <div class="field-block"><span class="lbl">Consignee Name &amp; Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
+        <div class="field-block"><span class="lbl">Consignee Name and Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
         <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  ·  time"></div></div>
       </div>
       <div class="right">
@@ -357,7 +371,7 @@
 
   <div class="foot">
     <div class="sign-row">
-      <div class="note">Signing the first page implies agreement with the policy &amp; terms on page 2.</div>
+      <div class="note">Signing the first page implies agreement with the policy and terms on page 2.</div>
       <div class="sign-field"><span class="lbl">Carrier Signature</span><div class="fld" contenteditable></div></div>
       <div class="sign-field" style="max-width:150px"><span class="lbl">Date</span><div class="fld" contenteditable></div></div>
     </div>
@@ -369,7 +383,7 @@
 <div class="sheet" data-screen-label="Design A — Page 2">
   <div class="terms-head">
     <img src="full-logo.png" alt="BVB">
-    <h1>Carrier Rate &amp; Load Confirmation — Continued<small>Terms &amp; Conditions</small></h1>
+    <h1>Carrier Rate and Load Confirmation — Continued<small>Terms and Conditions</small></h1>
   </div>
 
   <p class="intro">THIS RATE CONFIRMATION CONSTITUTES A CONTRACT. BY SIGNING THIS AGREEMENT, YOU AGREE TO TRANSPORT THIS LOAD UNDER THE TERMS OUTLINED BELOW, AS WELL AS ANY ADDITIONAL DIRECTIONS OR INSTRUCTIONS PROVIDED IN THE NOTES SECTION OF THIS RATE CONFIRMATION.</p>
