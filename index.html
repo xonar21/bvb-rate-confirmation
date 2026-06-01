@@ -177,7 +177,7 @@
   .foot{margin-top:auto;padding-top:14px;}
   .sheet{display:flex;flex-direction:column;}
   .sheet > .foot{margin-top:auto;}
-  .sign-row{display:flex;align-items:flex-end;gap:20px;border-top:2px solid var(--navy);padding-top:9px;}
+  .sign-row{display:flex;align-items:flex-end;gap:20px;padding-top:9px;}
   .sign-row .note{font-size:8px;color:var(--muted);max-width:280px;line-height:1.4;font-weight:600;letter-spacing:.02em;}
   .sign-row .sign-field{flex:1;display:flex;align-items:flex-end;gap:8px;}
   .sign-row .sign-field .lbl{white-space:nowrap;}
@@ -196,7 +196,7 @@
   .ins-para{font-size:8.2px;line-height:1.5;color:#2a313c;margin:9px 0;text-align:justify;hyphens:auto;}
   .accept{font-size:8.6px;font-weight:700;color:var(--navy);background:#f3f1e6;border-left:3px solid var(--gold);padding:7px 10px;border-radius:0 5px 5px 0;margin-top:8px;}
 
-  .accept-grid{margin-top:14px;display:grid;grid-template-columns:repeat(12,1fr);gap:10px 16px;border-top:2px solid var(--navy);padding-top:13px;}
+  .accept-grid{margin-top:14px;display:grid;grid-template-columns:repeat(12,1fr);gap:10px 16px;padding-top:13px;}
   .sig-cell{grid-column:span 4;display:flex;flex-direction:column;}
   .sig-cell.w6{grid-column:span 6;}
   .sig-cell .fld{border-bottom:1.5px solid var(--navy);min-height:19px;margin-bottom:3px;}
@@ -226,6 +226,18 @@
       font-family:Arial, Helvetica, sans-serif !important;
       -webkit-user-select:text !important;
       user-select:text !important;
+    }
+    .fees .desc .print-fld{
+      min-height:16px !important;
+      padding:7px 11px !important;
+      font-family:'Archivo', Arial, Helvetica, sans-serif !important;
+      font-size:13px !important;
+      font-weight:700 !important;
+      line-height:1.32 !important;
+    }
+    .fees .desc .print-fld:empty:before{
+      content:attr(data-ph);
+      color:#9aa3ae;
     }
     .fld:focus{background:transparent;}
     .sheet, .section, .cell, .ship td, .fees table, .sign-row, .accept-grid{
@@ -260,12 +272,12 @@
   <div class="meta">
     <div class="cell fill span3"><span class="lbl">Load Number</span><div class="fld" contenteditable data-ph="—"></div></div>
     <div class="cell span3"><span class="lbl">Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY"></div></div>
-    <div class="cell span3"><span class="lbl">Equipment Type</span><div class="fld" contenteditable data-ph="e.g. 53' Van / Reefer"></div></div>
-    <div class="cell span3"><span class="lbl">Carrier MC&nbsp;#</span><div class="fld" contenteditable data-ph="—"></div></div>
-
-    <div class="cell span6"><span class="lbl">Carrier Name</span><div class="fld" contenteditable data-ph="Full carrier / company name (grows for long names)"></div></div>
     <div class="cell span3"><span class="lbl">Broker Contact</span><div class="fld" contenteditable data-ph="Name"></div></div>
     <div class="cell span3"><span class="lbl">Broker Phone</span><div class="fld" contenteditable data-ph="(000) 000-0000"></div></div>
+
+    <div class="cell span6"><span class="lbl">Carrier Name</span><div class="fld" contenteditable data-ph="Full carrier / company name (grows for long names)"></div></div>
+    <div class="cell span3"><span class="lbl">Carrier MC&nbsp;#</span><div class="fld" contenteditable data-ph="—"></div></div>
+    <div class="cell span3"><span class="lbl">Equipment Type</span><div class="fld" contenteditable data-ph="e.g. 53' Van / Reefer"></div></div>
   </div>
 
   <!-- pickup -->
@@ -423,6 +435,27 @@
   function getPrintText(el){
     return (el.textContent || '').replace(/\u00a0/g, ' ').trim();
   }
+  function insertPlainTextAtCursor(text){
+    const sel = window.getSelection();
+    if(!sel || !sel.rangeCount) return;
+    const range = sel.getRangeAt(0);
+    range.deleteContents();
+    const node = document.createTextNode(text);
+    range.insertNode(node);
+    range.setStartAfter(node);
+    range.setEndAfter(node);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+  function attachPlainTextPaste(el){
+    if(el.id === 'totalA') return;
+    el.addEventListener('paste', (evt)=>{
+      evt.preventDefault();
+      const text = (evt.clipboardData || window.clipboardData).getData('text/plain');
+      insertPlainTextAtCursor(text);
+      syncPrintField(el);
+    });
+  }
   function attachMoneyField(el){
     const syncMoney = ()=>{
       const nextValue = formatMoneyValue(el.textContent);
@@ -469,7 +502,9 @@
         printEl.className = el.className + ' print-fld';
         el.insertAdjacentElement('afterend', printEl);
       }
+      if(el.dataset.ph) printEl.dataset.ph = el.dataset.ph;
       syncPrintField(el);
+      attachPlainTextPaste(el);
       el.addEventListener('input', ()=>syncPrintField(el));
       if(el.id === 'totalA') attachMoneyField(el);
     });
