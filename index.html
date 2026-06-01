@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rate Confirmation â€” Classic</title>
+<title>Rate Confirmation — Classic</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -63,7 +63,6 @@
   }
   .hdr .sub{font-size:10px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-top:5px;font-weight:600;}
   .rule{height:3px;background:var(--navy);margin:9px 0 0;position:relative;border-radius:2px;}
-  .rule:after{content:"";position:absolute;left:0;top:0;height:3px;width:120px;background:var(--gold);border-radius:2px;}
 
   /* ---------- generic field ---------- */
   .lbl{font-size:7.6px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);}
@@ -124,13 +123,55 @@
   .fees table{border:1px solid var(--line);}
   .fees td{border-top:1px solid var(--line-soft);padding:0;}
   .fees tr:first-child td{border-top:none;}
-  .fees .desc{width:62%;border-right:1px solid var(--line);}
-  .fees .lab{font-size:9.5px;font-weight:600;color:var(--navy);padding:7px 11px;letter-spacing:.02em;}
-  .fees .amt .fld{padding:7px 11px;text-align:right;font-variant-numeric:tabular-nums;}
-  .fees .desc .fld{padding:7px 11px;min-height:16px;}
-  .fees .total td{background:var(--navy);}
-  .fees .total .lab{color:#fff;font-family:'Archivo';font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
-  .fees .total .amt{color:var(--gold-2);font-family:'Archivo';font-weight:700;font-size:13px;text-align:right;padding:7px 11px;font-variant-numeric:tabular-nums;}
+  .fees .desc{width:100%;border-right:none;}
+  .fees .lab{
+    font-family:'Archivo';
+    font-size:11px;
+    font-weight:700;
+    color:var(--navy);
+    padding:7px 11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .fees .amt .fld{
+    padding:7px 11px;
+    text-align:right;
+    font-variant-numeric:tabular-nums;
+    font-family:'Archivo';
+    font-weight:700;
+    font-size:13px;
+    color:var(--gold-2);
+  }
+  .fees .desc .fld{
+    padding:7px 11px;
+    min-height:16px;
+    text-align:left;
+  }
+  .fees .total td{background:#fff;}
+  .fees .total .lab{background:#fff;color:var(--navy);}
+  .fees .total .amt{padding:0;background:#fff;}
+  .fees .total .amt .fld{
+    background:#fff;
+    color:var(--gold-2);
+    font-family:'Archivo';
+    font-weight:700;
+    font-size:13px;
+    text-align:right;
+    padding:7px 11px;
+    min-height:16px;
+  }
+  .fees .total .amt .fld:empty:before{
+    content:attr(data-ph);
+    color:#9aa3ae;
+    font-weight:700;
+  }
+  .fees .desc .fld:empty:before{
+    content:attr(data-ph);
+    color:#9aa3ae;
+    font-family:'Archivo';
+    font-weight:700;
+    font-size:13px;
+  }
 
   /* footer */
   .foot{margin-top:auto;padding-top:14px;}
@@ -145,14 +186,14 @@
 
   /* page 2 terms */
   .terms-head{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--navy);padding-bottom:8px;}
-  .terms-head img{height:40px;}
+  .terms-head img{height:62px;display:block;}
   .terms-head h1{font-family:'Archivo';font-weight:800;font-size:16px;letter-spacing:-.01em;text-transform:uppercase;color:var(--navy);margin:0;}
   .terms-head h1 small{display:block;font-size:8.5px;letter-spacing:.16em;color:var(--gold);font-weight:700;margin-top:2px;}
-  .intro{font-size:8.6px;line-height:1.5;color:var(--ink);margin:11px 0 9px;font-weight:500;}
+  .intro{font-size:8.6px;line-height:1.5;color:var(--ink);margin:11px 0 9px;font-weight:500;text-align:justify;hyphens:auto;}
   ol.terms{margin:0;padding-left:16px;columns:1;}
-  ol.terms li{font-size:8.2px;line-height:1.45;margin-bottom:3.5px;color:#2a313c;}
+  ol.terms li{font-size:8.2px;line-height:1.45;margin-bottom:3.5px;color:#2a313c;text-align:justify;hyphens:auto;}
   ol.terms li strong{color:var(--navy);}
-  .ins-para{font-size:8.2px;line-height:1.5;color:#2a313c;margin:9px 0;}
+  .ins-para{font-size:8.2px;line-height:1.5;color:#2a313c;margin:9px 0;text-align:justify;hyphens:auto;}
   .accept{font-size:8.6px;font-weight:700;color:var(--navy);background:#f3f1e6;border-left:3px solid var(--gold);padding:7px 10px;border-radius:0 5px 5px 0;margin-top:8px;}
 
   .accept-grid{margin-top:14px;display:grid;grid-template-columns:repeat(12,1fr);gap:10px 16px;border-top:2px solid var(--navy);padding-top:13px;}
@@ -187,19 +228,16 @@
 <body>
 
 <div class="toolbar">
-  <span class="tb-title">BVB Â· Rate Confirmation</span>
-  <span class="tb-tag">Design A â€” Classic</span>
+  <span class="tb-title">BVB · Rate Confirmation</span>
   <span class="spacer"></span>
-  <a href="rate-confirmation-overview.html">â€¹ Overview</a>
-  <a href="rate-confirmation-b-route.html">Design B â€º</a>
   <button onclick="clearAll()">Clear</button>
-  <button class="primary" onclick="printPdf()">âŒ˜ Print / Save PDF</button>
+  <button class="primary" onclick="printPdf()">⌘ Print / Save PDF</button>
 </div>
 
 <!-- ============ PAGE 1 ============ -->
-<div class="sheet" data-screen-label="Design A â€” Page 1">
+<div class="sheet" data-screen-label="Design A — Page 1">
   <div class="hdr">
-    <img class="logo" src="logo.png" alt="BVB â€” Best Value Brokerage">
+    <img class="logo" src="full-logo.png" alt="BVB — Best Value Brokerage">
     <div class="title-wrap">
       <h1>Carrier Rate &amp;<br>Load Confirmation</h1>
       <div class="sub">Best Value Brokerage</div>
@@ -209,10 +247,10 @@
 
   <!-- meta grid -->
   <div class="meta">
-    <div class="cell fill span3"><span class="lbl">Load Number</span><div class="fld" contenteditable data-ph="â€”"></div></div>
+    <div class="cell fill span3"><span class="lbl">Load Number</span><div class="fld" contenteditable data-ph="—"></div></div>
     <div class="cell span3"><span class="lbl">Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY"></div></div>
-    <div class="cell span3"><span class="lbl">Equipment Type</span><div class="fld" contenteditable data-ph="e.g. 53â€² Van / Reefer"></div></div>
-    <div class="cell span3"><span class="lbl">Carrier MC&nbsp;#</span><div class="fld" contenteditable data-ph="â€”"></div></div>
+    <div class="cell span3"><span class="lbl">Equipment Type</span><div class="fld" contenteditable data-ph="e.g. 53' Van / Reefer"></div></div>
+    <div class="cell span3"><span class="lbl">Carrier MC&nbsp;#</span><div class="fld" contenteditable data-ph="—"></div></div>
 
     <div class="cell span6"><span class="lbl">Carrier Name</span><div class="fld" contenteditable data-ph="Full carrier / company name (grows for long names)"></div></div>
     <div class="cell span3"><span class="lbl">Broker Contact</span><div class="fld" contenteditable data-ph="Name"></div></div>
@@ -221,14 +259,14 @@
 
   <!-- pickup -->
   <div class="section">
-    <div class="sec-head"><span class="tick"></span><h2>Shipper â€” Pickup</h2><span class="badge">Stop 1</span></div>
+    <div class="sec-head"><span class="tick"></span><h2>Shipper — Pickup</h2><span class="badge">Stop 1</span></div>
     <div class="stop-body">
       <div class="left">
         <div class="field-block"><span class="lbl">Shipper Name &amp; Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
-        <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  Â·  time"></div></div>
+        <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  ·  time"></div></div>
       </div>
       <div class="right">
-        <div class="field-block"><span class="lbl">Pickup Instructions</span><div class="fld instr" contenteditable data-ph="Appointment, dock, ref #â€¦"></div></div>
+        <div class="field-block"><span class="lbl">Pickup Instructions</span><div class="fld instr" contenteditable data-ph="Appointment, dock, ref #..."></div></div>
         <div class="field-block"><span class="lbl">Shipper References</span><div class="fld instr" contenteditable data-ph="PO / BOL / pickup #"></div></div>
       </div>
     </div>
@@ -236,14 +274,14 @@
 
   <!-- delivery -->
   <div class="section">
-    <div class="sec-head"><span class="tick"></span><h2>Consignee â€” Delivery</h2><span class="badge">Stop 2</span></div>
+    <div class="sec-head"><span class="tick"></span><h2>Consignee — Delivery</h2><span class="badge">Stop 2</span></div>
     <div class="stop-body">
       <div class="left">
         <div class="field-block"><span class="lbl">Consignee Name &amp; Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
-        <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  Â·  time"></div></div>
+        <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  ·  time"></div></div>
       </div>
       <div class="right">
-        <div class="field-block"><span class="lbl">Delivery Instructions</span><div class="fld instr" contenteditable data-ph="Appointment, dock, ref #â€¦"></div></div>
+        <div class="field-block"><span class="lbl">Delivery Instructions</span><div class="fld instr" contenteditable data-ph="Appointment, dock, ref #..."></div></div>
         <div class="field-block"><span class="lbl">Consignee References</span><div class="fld instr" contenteditable data-ph="PO / delivery #"></div></div>
       </div>
     </div>
@@ -280,17 +318,6 @@
           <td><div class="fld" contenteditable></div></td>
           <td><div class="fld" contenteditable></div></td>
         </tr>
-        <tr>
-          <td class="num"><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
-          <td class="num"><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
-          <td class="num"><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -299,10 +326,9 @@
   <div class="fees">
     <div class="tbl-title"><span class="tick"></span><h2>Carrier Fees</h2></div>
     <table>
-      <tr><td class="desc"><div class="fld" contenteditable data-ph="Description"></div></td><td class="amt"><div class="fld money" contenteditable data-ph="$0.00"></div></td></tr>
-      <tr><td class="desc lab">Net Line Haul</td><td class="amt"><div class="fld money" contenteditable data-ph="$0.00"></div></td></tr>
-      <tr><td class="desc lab">Fuel / Accessorials</td><td class="amt"><div class="fld money" contenteditable data-ph="$0.00"></div></td></tr>
-      <tr class="total"><td class="lab">Total Cost</td><td class="amt" id="totalA">$0.00</td></tr>
+      <tr><td class="desc" colspan="2"><div class="fld" contenteditable data-ph="Description"></div></td></tr>
+      <tr><td class="desc lab">Net Line Haul</td><td class="amt"><div class="fld" data-ph="$0.00"></div></td></tr>
+      <tr class="total"><td class="lab">Total Cost</td><td class="amt"><div class="fld money" contenteditable data-ph="$0.00" id="totalA" inputmode="decimal" spellcheck="false"></div></td></tr>
     </table>
   </div>
 
@@ -317,36 +343,36 @@
 </div>
 
 <!-- ============ PAGE 2 ============ -->
-<div class="sheet" data-screen-label="Design A â€” Page 2">
+<div class="sheet" data-screen-label="Design A — Page 2">
   <div class="terms-head">
-    <img src="logo.png" alt="BVB">
-    <h1>Carrier Rate &amp; Load Confirmation â€” Continued<small>Terms &amp; Conditions</small></h1>
+    <img src="full-logo.png" alt="BVB">
+    <h1>Carrier Rate &amp; Load Confirmation — Continued<small>Terms &amp; Conditions</small></h1>
   </div>
 
-  <p class="intro">This rate confirmation constitutes a contract. By signing this agreement, you agree to transport this load under the terms outlined below, as well as any additional directions or instructions provided in the notes section of this rate confirmation.</p>
+  <p class="intro">THIS RATE CONFIRMATION CONSTITUTES A CONTRACT. BY SIGNING THIS AGREEMENT, YOU AGREE TO TRANSPORT THIS LOAD UNDER THE TERMS OUTLINED BELOW, AS WELL AS ANY ADDITIONAL DIRECTIONS OR INSTRUCTIONS PROVIDED IN THE NOTES SECTION OF THIS RATE CONFIRMATION.</p>
 
   <ol class="terms">
-    <li>The carrier acknowledges that it will seek payment solely from the broker for its services and refrain from contacting or pursuing payment from the broker's customers, shippers, or consignees for freight charges or other fees owed to the carrier.</li>
-    <li>The carrier must furnish all necessary documentation to substantiate any late or missed appointments / delivery dates before payment can be processed.</li>
-    <li>Drivers or dispatchers must check in by 9:00 AM daily with their location until the load is completed; failure to comply will result in a $200.00 fine daily.</li>
-    <li>Failure to pick up or deliver on time can result in up to a $250.00 charge per day.</li>
-    <li>The shipment will not be paid if double brokered.</li>
-    <li>Proof of delivery (POD) is required within 24 hours after delivery, subject to a $250.00 late fee.</li>
-    <li>Acceptance of carrier-view tracking is mandatory, and tracking must remain active for the entire load; failure to comply incurs a $250.00 fee.</li>
-    <li>Invoices must be submitted within 14 days after delivery to "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="68090b0b071d061c01060f280a1e0a0e1a0d010f001c460b0705">[email&#160;protected]</a>"; failure to comply will result in up to a 50% fine of the total rate.</li>
-    <li>Invoices received after 30 days from delivery will not be paid.</li>
-    <li>If the load is changed or canceled by BVB Freight, "no truck order not used" will not be paid.</li>
-    <li>The broker will not pay detention charges.</li>
-    <li>The carrier assumes full responsibility for any occurrences involving the freight during transportation, including any overages, shortages, or damages, as they arise.</li>
-    <li>Drivers are required to obtain a legal weight limit before transporting the load to the consignee.</li>
-    <li>Drivers are responsible for verifying the shipment package count and ensuring proper freight securing, unless alternative instructions are provided. Any discrepancies must be reported to BVB Express LLC before departing.</li>
-    <li>When accepting this rate confirmation, the carrier confirms that BVB Express LLC is officially listed on their cargo insurance with the address "160 NW Gilman Blvd Ste 243, Issaquah, WA 98027". The insurance coverage contains at least $100,000. If not, the shipment will not be paid.</li>
-    <li>The dry-draught load must be delivered within 14 hours to avoid a claim for the full load. If the trailer is a dry van, it is necessary to deliver within 14 hours. If the trailer is a reefer, the driver must keep the reefer on at 38&deg;F.</li>
+    <li>THE CARRIER ACKNOWLEDGES THAT IT WILL SEEK PAYMENT SOLELY FROM THE BROKER FOR ITS SERVICES AND REFRAIN FROM CONTACTING OR PURSUING PAYMENT FROM THE BROKER’S CUSTOMERS, SHIPPERS, OR CONSIGNEES FOR FREIGHT CHARGES OR OTHER FEES OWED TO THE CARRIER.</li>
+    <li>THE CARRIER MUST FURNISH ALL NECESSARY DOCUMENTATION TO SUBSTANTIATE ANY LATE OR MISSED APPOINTMENTS/DELIVERY DATES BEFORE PAYMENT CAN BE PROCESSED.</li>
+    <li>DRIVERS OR DISPATCHERS MUST CHECK IN BY 9:00 AM DAILY WITH THEIR LOCATION UNTIL THE LOAD IS COMPLETED; FAILURE TO COMPLY WILL RESULT IN A $100.00 FINE DAILY.</li>
+    <li>FAILURE TO PICK UP OR DELIVER ON TIME CAN RESULT IN UP TO A $250.00 CHARGE PER DAY.</li>
+    <li>THE SHIPMENT WILL NOT BE PAID IF DOUBLE BROKERED.</li>
+    <li>PROOF OF DELIVERY (POD) IS REQUIRED WITHIN 24 HOURS AFTER DELIVERY, SUBJECT TO A $250.00 LATE FEE.</li>
+    <li>ACCEPTANCE OF CARRIER VIEW TRUCKING IS MANDATORY, AND TRACKING MUST REMAIN ACTIVE FOR THE ENTIRE LOAD; FAILURE TO COMPLY INCURS A $250.00 FEE.</li>
+    <li>INVOICES MUST BE SUBMITTED WITHIN 14 DAYS AFTER DELIVERY TO "ACCOUNTING@BVBFREIGHT.COM", FAILURE TO COMPLY WILL RESULT UP TO 50% FINE OF THE TOTAL RATE.</li>
+    <li>INVOICES RECEIVED AFTER 30 DAYS FROM DELIVERY WILL NOT BE PAID.</li>
+    <li>IF THE LOAD IS CHANGED OR CANCELED BY BVB FREIGHT, "NO TRUCK ORDER NOT USED" WILL NOT BE PAID.</li>
+    <li>THE BROKER WILL NOT PAY DETENTION CHARGES.</li>
+    <li>THE CARRIER ASSUMES FULL RESPONSIBILITY FOR ANY OCCURRENCES INVOLVING THE FREIGHT DURING TRANSPORTATION, INCLUDING ANY OVERAGES, SHORTAGES, OR DAMAGES, AS THEY ARISE.</li>
+    <li>DRIVERS ARE REQUIRED TO OBTAIN A LEGAL WEIGHT LIMIT BEFORE TRANSPORTING THE LOAD TO THE CONSIGNEE.</li>
+    <li>DRIVERS ARE RESPONSIBLE FOR VERIFYING THE SHIPMENT PACKAGE COUNT AND ENSURING PROPER FREIGHT SECURING, UNLESS ALTERNATIVE INSTRUCTIONS ARE PROVIDED. ANY DISCREPANCIES MUST BE REPORTED TO BVB EXPRESS LLC BEFORE DEPARTING.</li>
+    <li>WHEN ACCEPTING THIS RATE CONFIRMATION, THE CARRIER CONFIRMS THAT BVB EXPRESS LLC IS OFFICIALLY LISTED ON THEIR CARGO INSURANCE WITH THE ADDRESS "2076 NW MULLRIDGE PL UNIT K302 ISSAQUAH, WA 98027". THE INSURANCE COVERAGE CONTAINS AT LEAST $100,000. IF NOT, THE SHIPMENT WILL NOT BE PAID.</li>
+    <li>THE DRY DRAUGHT LOAD MUST BE DELIVERED WITHIN 14 HOURS TO AVOID A CLAIM FOR THE FULL LOAD. IF THE TRAILER IS A DRY VAN, IT IS NECESSARY TO DELIVER WITHIN 14 HOURS. IF THE TRAILER IS A REEFER, THE DRIVER MUST KEEP THE REEFER ON AT 38°F.</li>
   </ol>
 
-  <p class="ins-para">The carrier shall maintain comprehensive cargo insurance coverage with a minimum value of $100,000.00 per shipment. Additionally, the carrier must uphold public liability insurance coverage with a minimum value of $1,000,000 (BMC-91 on file), as well as workers' compensation insurance as mandated by state regulations. Upon request, the carrier shall provide certificates of insurance. As a federally licensed interstate motor carrier of general freight, the carrier affirms its compliance with all applicable regulations and holds neither a "conditional" nor "unsatisfactory" safety rating. The carrier agrees to indemnify, defend, and hold the broker harmless from any claims, actions, or demands arising from injury, death, or property damage resulting from the carrier's negligence, excluding instances where the broker's negligence or intentional actions are proven. The carrier assumes liability for any loss, damage, or delay in accordance with the Carmack Amendment (49 U.S.C. Â§14706) and associated regulations (49 C.F.R. Part 370). This agreement supersedes any tariff or liability limitations.</p>
+  <p class="ins-para">The carrier shall maintain comprehensive cargo insurance coverage with a minimum value of $100,000.00 per shipment. Additionally, the carrier must uphold public liability insurance coverage with a minimum value of $1,000,000 (BMC-91 on file), as well as workers' compensation insurance as mandated by state regulations. Upon request, the carrier shall provide certificates of insurance. As a federally licensed interstate motor carrier of general freight, the carrier affirms its compliance with all applicable regulations and holds neither a "conditional" nor "unsatisfactory" safety rating. The carrier agrees to indemnify, defend, and hold the broker harmless from any claims, actions, or demands arising from injury, death, or property damage resulting from the carrier's negligence, excluding instances where the broker's negligence or intentional actions are proven. The carrier assumes liability for any loss, damage, or delay in accordance with the Carmack Amendment (49 U.S.C. §14706) and associated regulations (49 C.F.R. Part 370). This agreement supersedes any tariff or liability limitations.</p>
 
-  <div class="accept">Acceptance of the BVB Express LLC shipment and rate confirmation signifies adherence to these terms and conditions.</div>
+  <div class="accept">ACCEPTANCE OF THE BVB EXPRESS LLC SHIPMENT AND RATE CONFIRMATION SIGNIFIES ADHERENCE TO THESE TERMS AND CONDITIONS.</div>
 
   <div class="accept-grid">
     <div class="sig-cell w6"><div class="fld" contenteditable></div><span class="lbl">Load Accepted By</span></div>
@@ -363,10 +389,16 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // auto-sum carrier fees
   function parseMoney(t){const n=parseFloat((t||'').replace(/[^0-9.\-]/g,''));return isNaN(n)?0:n;}
+  function formatMoneyValue(raw){
+    const digits = (raw || '').replace(/[^0-9]/g, '');
+    if(!digits) return '';
+    const cents = digits.slice(-2).padStart(2, '0');
+    const dollarsRaw = digits.slice(0, -2);
+    const dollars = dollarsRaw ? parseInt(dollarsRaw, 10).toLocaleString('en-US') : '0';
+    return `$${dollars}.${cents}`;
+  }
   function recalc(){
-    let sum=0;
-    document.querySelectorAll('.fees .money').forEach(el=>sum+=parseMoney(el.textContent));
-    document.getElementById('totalA').textContent='$'+sum.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    // Total Cost is now entered manually.
   }
   document.querySelectorAll('.fees .money').forEach(el=>el.addEventListener('input',recalc));
   function clearAll(){
@@ -379,6 +411,35 @@
   // PDF printers are more reliable with plain text nodes than contenteditable fields.
   function getPrintText(el){
     return (el.textContent || '').replace(/\u00a0/g, ' ').trim();
+  }
+  function attachMoneyField(el){
+    const syncMoney = ()=>{
+      const nextValue = formatMoneyValue(el.textContent);
+      el.textContent = nextValue;
+      const range = document.createRange();
+      const sel = window.getSelection();
+      range.selectNodeContents(el);
+      range.collapse(false);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    };
+    el.addEventListener('beforeinput', (evt)=>{
+      if(evt.inputType === 'insertText' && /[^\d]/.test(evt.data || '')) evt.preventDefault();
+    });
+    el.addEventListener('input', ()=>{
+      syncMoney();
+      syncPrintField(el);
+    });
+    el.addEventListener('paste', (evt)=>{
+      evt.preventDefault();
+      const text = (evt.clipboardData || window.clipboardData).getData('text');
+      el.textContent = formatMoneyValue(text);
+      syncPrintField(el);
+    });
+    el.addEventListener('blur', ()=>{
+      if(!el.textContent.trim()) el.textContent = '';
+      syncPrintField(el);
+    });
   }
   function syncPrintField(el){
     const printEl = el.nextElementSibling && el.nextElementSibling.classList.contains('print-fld')
@@ -399,6 +460,7 @@
       }
       syncPrintField(el);
       el.addEventListener('input', ()=>syncPrintField(el));
+      if(el.id === 'totalA') attachMoneyField(el);
     });
   }
   function prepareForPrint(){
