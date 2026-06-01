@@ -1,0 +1,417 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rate Confirmation â€” Classic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#102242; --navy-2:#1c3155; --gold:#cf9032; --gold-2:#e0b25e;
+    --ink:#1a2330; --muted:#6b7480; --line:#c4cbd4; --line-soft:#e4e8ed;
+    --field:#f6f8fa; --field-line:#aeb6c1;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:#5a606b;
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    color:var(--ink);
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+
+  /* ---------- toolbar ---------- */
+  .toolbar{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; gap:14px;
+    padding:10px 20px;
+    background:rgba(16,34,66,.96); backdrop-filter:blur(6px);
+    box-shadow:0 2px 14px rgba(0,0,0,.25);
+  }
+  .toolbar .tb-title{color:#fff;font-family:'Archivo';font-weight:700;font-size:13px;letter-spacing:.04em;}
+  .toolbar .tb-tag{color:var(--gold-2);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;}
+  .toolbar .spacer{flex:1;}
+  .toolbar button{
+    font-family:'IBM Plex Sans';font-size:12px;font-weight:600;
+    border:1px solid rgba(255,255,255,.25); background:transparent;color:#fff;
+    padding:7px 14px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:7px;
+    transition:.15s;
+  }
+  .toolbar button:hover{background:rgba(255,255,255,.12);}
+  .toolbar button.primary{background:var(--gold);border-color:var(--gold);color:#241a06;}
+  .toolbar button.primary:hover{background:var(--gold-2);}
+  .toolbar a{color:rgba(255,255,255,.7);font-size:12px;text-decoration:none;font-weight:500;}
+  .toolbar a:hover{color:#fff;}
+
+  /* ---------- page ---------- */
+  .sheet{
+    width:8.5in; min-height:11in; background:#fff; margin:88px auto 28px;
+    padding:0.46in 0.5in 0.4in; position:relative;
+    box-shadow:0 8px 40px rgba(0,0,0,.4);
+  }
+  .sheet+ .sheet{margin-top:0;}
+
+  /* ---------- header ---------- */
+  .hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;}
+  .hdr .logo{height:62px;display:block;}
+  .hdr .title-wrap{text-align:right;padding-top:4px;}
+  .hdr h1{
+    font-family:'Archivo';font-weight:800;font-size:21px;line-height:1.05;
+    color:var(--navy);margin:0;letter-spacing:-.01em;text-transform:uppercase;
+  }
+  .hdr .sub{font-size:10px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-top:5px;font-weight:600;}
+  .rule{height:3px;background:var(--navy);margin:9px 0 0;position:relative;border-radius:2px;}
+  .rule:after{content:"";position:absolute;left:0;top:0;height:3px;width:120px;background:var(--gold);border-radius:2px;}
+
+  /* ---------- generic field ---------- */
+  .lbl{font-size:7.6px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);}
+  .lbl .gold{color:var(--gold);}
+  .fld{
+    font-family:'IBM Plex Sans';font-size:11px;font-weight:500;color:var(--ink);
+    min-height:16px; line-height:1.32; outline:none; white-space:pre-wrap; word-break:break-word;
+    -webkit-user-select:text; user-select:text;
+  }
+  .fld *{ -webkit-user-select:text; user-select:text; }
+  .print-fld{display:none;}
+  .fld[contenteditable]:empty:before{content:attr(data-ph);color:#b3bac3;font-weight:400;}
+  .fld:focus{background:#fffdf4;}
+
+  /* meta grid */
+  .meta{display:grid;grid-template-columns:repeat(12,1fr);gap:7px;margin-top:13px;}
+  .cell{border:1px solid var(--line);border-radius:5px;padding:5px 8px 6px;background:#fff;}
+  .cell.fill{background:var(--field);}
+  .cell .lbl{display:block;margin-bottom:2px;}
+  .span3{grid-column:span 3;} .span4{grid-column:span 4;} .span5{grid-column:span 5;}
+  .span6{grid-column:span 6;} .span7{grid-column:span 7;} .span8{grid-column:span 8;} .span12{grid-column:span 12;}
+
+  /* ---------- section ---------- */
+  .section{margin-top:12px;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  .sec-head{
+    display:flex;align-items:center;gap:9px;
+    background:var(--navy);color:#fff;padding:6px 11px;
+  }
+  .sec-head .tick{width:5px;height:15px;background:var(--gold);border-radius:2px;}
+  .sec-head h2{font-family:'Archivo';font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;}
+  .sec-head .badge{margin-left:auto;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-2);}
+
+  .stop-body{display:grid;grid-template-columns:1fr 1fr;}
+  .stop-body > div{padding:8px 11px;}
+  .stop-body .left{border-right:1px solid var(--line-soft);}
+  .field-block{margin-bottom:7px;}
+  .field-block:last-child{margin-bottom:0;}
+  .field-block .lbl{display:block;margin-bottom:3px;}
+  .addr{min-height:62px;background:var(--field);border:1px solid var(--field-line);border-radius:5px;padding:6px 8px;}
+  .instr{min-height:30px;background:var(--field);border:1px solid var(--field-line);border-radius:5px;padding:6px 8px;}
+  .date-row{display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:7px;border-top:1px dashed var(--line);}
+  .date-row .lbl{white-space:nowrap;}
+  .date-row .fld{flex:1;border-bottom:1px solid var(--field-line);min-height:15px;padding-bottom:1px;}
+
+  /* ---------- tables ---------- */
+  .tbl-wrap{margin-top:12px;}
+  .tbl-title{display:flex;align-items:center;gap:9px;margin-bottom:5px;}
+  .tbl-title .tick{width:5px;height:14px;background:var(--gold);border-radius:2px;}
+  .tbl-title h2{font-family:'Archivo';font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);margin:0;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;}
+  .ship th,.ship td{border:1px solid var(--line);padding:0;vertical-align:top;}
+  .ship thead th{background:var(--navy);color:#fff;font-size:7.4px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;text-align:left;}
+  .ship thead .grp{background:var(--navy-2);text-align:center;font-size:8px;letter-spacing:.1em;}
+  .ship td .fld{padding:6px;min-height:30px;}
+  .ship td.num .fld{text-align:center;}
+
+  .fees{margin-top:12px;}
+  .fees table{border:1px solid var(--line);}
+  .fees td{border-top:1px solid var(--line-soft);padding:0;}
+  .fees tr:first-child td{border-top:none;}
+  .fees .desc{width:62%;border-right:1px solid var(--line);}
+  .fees .lab{font-size:9.5px;font-weight:600;color:var(--navy);padding:7px 11px;letter-spacing:.02em;}
+  .fees .amt .fld{padding:7px 11px;text-align:right;font-variant-numeric:tabular-nums;}
+  .fees .desc .fld{padding:7px 11px;min-height:16px;}
+  .fees .total td{background:var(--navy);}
+  .fees .total .lab{color:#fff;font-family:'Archivo';font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
+  .fees .total .amt{color:var(--gold-2);font-family:'Archivo';font-weight:700;font-size:13px;text-align:right;padding:7px 11px;font-variant-numeric:tabular-nums;}
+
+  /* footer */
+  .foot{margin-top:auto;padding-top:14px;}
+  .sheet{display:flex;flex-direction:column;}
+  .sheet > .foot{margin-top:auto;}
+  .sign-row{display:flex;align-items:flex-end;gap:20px;border-top:2px solid var(--navy);padding-top:9px;}
+  .sign-row .note{font-size:8px;color:var(--muted);max-width:280px;line-height:1.4;font-weight:600;letter-spacing:.02em;}
+  .sign-row .sign-field{flex:1;display:flex;align-items:flex-end;gap:8px;}
+  .sign-row .sign-field .lbl{white-space:nowrap;}
+  .sign-row .sign-field .fld{flex:1;border-bottom:1.5px solid var(--navy);min-height:18px;}
+  .pagemark{position:absolute;bottom:0.22in;left:0;right:0;text-align:center;font-size:8.5px;color:var(--muted);letter-spacing:.1em;font-weight:600;}
+
+  /* page 2 terms */
+  .terms-head{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--navy);padding-bottom:8px;}
+  .terms-head img{height:40px;}
+  .terms-head h1{font-family:'Archivo';font-weight:800;font-size:16px;letter-spacing:-.01em;text-transform:uppercase;color:var(--navy);margin:0;}
+  .terms-head h1 small{display:block;font-size:8.5px;letter-spacing:.16em;color:var(--gold);font-weight:700;margin-top:2px;}
+  .intro{font-size:8.6px;line-height:1.5;color:var(--ink);margin:11px 0 9px;font-weight:500;}
+  ol.terms{margin:0;padding-left:16px;columns:1;}
+  ol.terms li{font-size:8.2px;line-height:1.45;margin-bottom:3.5px;color:#2a313c;}
+  ol.terms li strong{color:var(--navy);}
+  .ins-para{font-size:8.2px;line-height:1.5;color:#2a313c;margin:9px 0;}
+  .accept{font-size:8.6px;font-weight:700;color:var(--navy);background:#f3f1e6;border-left:3px solid var(--gold);padding:7px 10px;border-radius:0 5px 5px 0;margin-top:8px;}
+
+  .accept-grid{margin-top:14px;display:grid;grid-template-columns:repeat(12,1fr);gap:10px 16px;border-top:2px solid var(--navy);padding-top:13px;}
+  .sig-cell{grid-column:span 4;display:flex;flex-direction:column;}
+  .sig-cell.w6{grid-column:span 6;}
+  .sig-cell .fld{border-bottom:1.5px solid var(--navy);min-height:19px;margin-bottom:3px;}
+  .sig-cell .lbl{font-size:7.6px;}
+
+  @media print{
+    body{background:#fff;}
+    .toolbar{display:none;}
+    .sheet{margin:0;box-shadow:none;width:auto;min-height:auto;page-break-after:always;}
+    .sheet:last-child{page-break-after:auto;}
+    .fld[data-print-field="editor"]{display:none !important;}
+    .print-fld{
+      display:block !important;
+      background:transparent !important;
+      color:#000 !important;
+      font-family:Arial, Helvetica, sans-serif !important;
+      -webkit-user-select:text !important;
+      user-select:text !important;
+    }
+    .fld:focus{background:transparent;}
+    .sheet, .section, .cell, .ship td, .fees table, .sign-row, .accept-grid{
+      break-inside:avoid;
+      page-break-inside:avoid;
+    }
+  }
+  @page{size:letter;margin:0.32in 0;}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span class="tb-title">BVB Â· Rate Confirmation</span>
+  <span class="tb-tag">Design A â€” Classic</span>
+  <span class="spacer"></span>
+  <a href="rate-confirmation-overview.html">â€¹ Overview</a>
+  <a href="rate-confirmation-b-route.html">Design B â€º</a>
+  <button onclick="clearAll()">Clear</button>
+  <button class="primary" onclick="printPdf()">âŒ˜ Print / Save PDF</button>
+</div>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="sheet" data-screen-label="Design A â€” Page 1">
+  <div class="hdr">
+    <img class="logo" src="logo.png" alt="BVB â€” Best Value Brokerage">
+    <div class="title-wrap">
+      <h1>Carrier Rate &amp;<br>Load Confirmation</h1>
+      <div class="sub">Best Value Brokerage</div>
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <!-- meta grid -->
+  <div class="meta">
+    <div class="cell fill span3"><span class="lbl">Load Number</span><div class="fld" contenteditable data-ph="â€”"></div></div>
+    <div class="cell span3"><span class="lbl">Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY"></div></div>
+    <div class="cell span3"><span class="lbl">Equipment Type</span><div class="fld" contenteditable data-ph="e.g. 53â€² Van / Reefer"></div></div>
+    <div class="cell span3"><span class="lbl">Carrier MC&nbsp;#</span><div class="fld" contenteditable data-ph="â€”"></div></div>
+
+    <div class="cell span6"><span class="lbl">Carrier Name</span><div class="fld" contenteditable data-ph="Full carrier / company name (grows for long names)"></div></div>
+    <div class="cell span3"><span class="lbl">Broker Contact</span><div class="fld" contenteditable data-ph="Name"></div></div>
+    <div class="cell span3"><span class="lbl">Broker Phone</span><div class="fld" contenteditable data-ph="(000) 000-0000"></div></div>
+  </div>
+
+  <!-- pickup -->
+  <div class="section">
+    <div class="sec-head"><span class="tick"></span><h2>Shipper â€” Pickup</h2><span class="badge">Stop 1</span></div>
+    <div class="stop-body">
+      <div class="left">
+        <div class="field-block"><span class="lbl">Shipper Name &amp; Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
+        <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  Â·  time"></div></div>
+      </div>
+      <div class="right">
+        <div class="field-block"><span class="lbl">Pickup Instructions</span><div class="fld instr" contenteditable data-ph="Appointment, dock, ref #â€¦"></div></div>
+        <div class="field-block"><span class="lbl">Shipper References</span><div class="fld instr" contenteditable data-ph="PO / BOL / pickup #"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- delivery -->
+  <div class="section">
+    <div class="sec-head"><span class="tick"></span><h2>Consignee â€” Delivery</h2><span class="badge">Stop 2</span></div>
+    <div class="stop-body">
+      <div class="left">
+        <div class="field-block"><span class="lbl">Consignee Name &amp; Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
+        <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  Â·  time"></div></div>
+      </div>
+      <div class="right">
+        <div class="field-block"><span class="lbl">Delivery Instructions</span><div class="fld instr" contenteditable data-ph="Appointment, dock, ref #â€¦"></div></div>
+        <div class="field-block"><span class="lbl">Consignee References</span><div class="fld instr" contenteditable data-ph="PO / delivery #"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- shipment info -->
+  <div class="tbl-wrap">
+    <div class="tbl-title"><span class="tick"></span><h2>Shipment Information</h2></div>
+    <table class="ship">
+      <thead>
+        <tr>
+          <th class="grp" colspan="2">Handling Unit</th>
+          <th class="grp" colspan="2">Package</th>
+          <th rowspan="2" style="width:13%">Weight</th>
+          <th rowspan="2" style="width:8%">HM&nbsp;(X)</th>
+          <th rowspan="2" style="width:25%">Commodity Description</th>
+          <th class="grp" colspan="2">LTL Only</th>
+        </tr>
+        <tr>
+          <th style="width:7%">Qty</th><th style="width:9%">Type</th>
+          <th style="width:7%">Qty</th><th style="width:9%">Type</th>
+          <th style="width:8%">NMFC&nbsp;#</th><th style="width:9%">Class</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num"><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+          <td class="num"><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+          <td class="num"><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+        </tr>
+        <tr>
+          <td class="num"><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+          <td class="num"><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+          <td class="num"><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+          <td><div class="fld" contenteditable></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- fees -->
+  <div class="fees">
+    <div class="tbl-title"><span class="tick"></span><h2>Carrier Fees</h2></div>
+    <table>
+      <tr><td class="desc"><div class="fld" contenteditable data-ph="Description"></div></td><td class="amt"><div class="fld money" contenteditable data-ph="$0.00"></div></td></tr>
+      <tr><td class="desc lab">Net Line Haul</td><td class="amt"><div class="fld money" contenteditable data-ph="$0.00"></div></td></tr>
+      <tr><td class="desc lab">Fuel / Accessorials</td><td class="amt"><div class="fld money" contenteditable data-ph="$0.00"></div></td></tr>
+      <tr class="total"><td class="lab">Total Cost</td><td class="amt" id="totalA">$0.00</td></tr>
+    </table>
+  </div>
+
+  <div class="foot">
+    <div class="sign-row">
+      <div class="note">Signing the first page implies agreement with the policy &amp; terms on page 2.</div>
+      <div class="sign-field"><span class="lbl">Carrier Signature</span><div class="fld" contenteditable></div></div>
+      <div class="sign-field" style="max-width:150px"><span class="lbl">Date</span><div class="fld" contenteditable></div></div>
+    </div>
+  </div>
+  <div class="pagemark">Page 1 of 2</div>
+</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="sheet" data-screen-label="Design A â€” Page 2">
+  <div class="terms-head">
+    <img src="logo.png" alt="BVB">
+    <h1>Carrier Rate &amp; Load Confirmation â€” Continued<small>Terms &amp; Conditions</small></h1>
+  </div>
+
+  <p class="intro">This rate confirmation constitutes a contract. By signing this agreement, you agree to transport this load under the terms outlined below, as well as any additional directions or instructions provided in the notes section of this rate confirmation.</p>
+
+  <ol class="terms">
+    <li>The carrier acknowledges that it will seek payment solely from the broker for its services and refrain from contacting or pursuing payment from the broker's customers, shippers, or consignees for freight charges or other fees owed to the carrier.</li>
+    <li>The carrier must furnish all necessary documentation to substantiate any late or missed appointments / delivery dates before payment can be processed.</li>
+    <li>Drivers or dispatchers must check in by 9:00 AM daily with their location until the load is completed; failure to comply will result in a $200.00 fine daily.</li>
+    <li>Failure to pick up or deliver on time can result in up to a $250.00 charge per day.</li>
+    <li>The shipment will not be paid if double brokered.</li>
+    <li>Proof of delivery (POD) is required within 24 hours after delivery, subject to a $250.00 late fee.</li>
+    <li>Acceptance of carrier-view tracking is mandatory, and tracking must remain active for the entire load; failure to comply incurs a $250.00 fee.</li>
+    <li>Invoices must be submitted within 14 days after delivery to "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="68090b0b071d061c01060f280a1e0a0e1a0d010f001c460b0705">[email&#160;protected]</a>"; failure to comply will result in up to a 50% fine of the total rate.</li>
+    <li>Invoices received after 30 days from delivery will not be paid.</li>
+    <li>If the load is changed or canceled by BVB Freight, "no truck order not used" will not be paid.</li>
+    <li>The broker will not pay detention charges.</li>
+    <li>The carrier assumes full responsibility for any occurrences involving the freight during transportation, including any overages, shortages, or damages, as they arise.</li>
+    <li>Drivers are required to obtain a legal weight limit before transporting the load to the consignee.</li>
+    <li>Drivers are responsible for verifying the shipment package count and ensuring proper freight securing, unless alternative instructions are provided. Any discrepancies must be reported to BVB Express LLC before departing.</li>
+    <li>When accepting this rate confirmation, the carrier confirms that BVB Express LLC is officially listed on their cargo insurance with the address "160 NW Gilman Blvd Ste 243, Issaquah, WA 98027". The insurance coverage contains at least $100,000. If not, the shipment will not be paid.</li>
+    <li>The dry-draught load must be delivered within 14 hours to avoid a claim for the full load. If the trailer is a dry van, it is necessary to deliver within 14 hours. If the trailer is a reefer, the driver must keep the reefer on at 38&deg;F.</li>
+  </ol>
+
+  <p class="ins-para">The carrier shall maintain comprehensive cargo insurance coverage with a minimum value of $100,000.00 per shipment. Additionally, the carrier must uphold public liability insurance coverage with a minimum value of $1,000,000 (BMC-91 on file), as well as workers' compensation insurance as mandated by state regulations. Upon request, the carrier shall provide certificates of insurance. As a federally licensed interstate motor carrier of general freight, the carrier affirms its compliance with all applicable regulations and holds neither a "conditional" nor "unsatisfactory" safety rating. The carrier agrees to indemnify, defend, and hold the broker harmless from any claims, actions, or demands arising from injury, death, or property damage resulting from the carrier's negligence, excluding instances where the broker's negligence or intentional actions are proven. The carrier assumes liability for any loss, damage, or delay in accordance with the Carmack Amendment (49 U.S.C. Â§14706) and associated regulations (49 C.F.R. Part 370). This agreement supersedes any tariff or liability limitations.</p>
+
+  <div class="accept">Acceptance of the BVB Express LLC shipment and rate confirmation signifies adherence to these terms and conditions.</div>
+
+  <div class="accept-grid">
+    <div class="sig-cell w6"><div class="fld" contenteditable></div><span class="lbl">Load Accepted By</span></div>
+    <div class="sig-cell"><div class="fld" contenteditable></div><span class="lbl">Date</span></div>
+    <div class="sig-cell w6"><div class="fld" contenteditable></div><span class="lbl">Signature</span></div>
+    <div class="sig-cell w6"><div class="fld" contenteditable></div><span class="lbl">Driver Name</span></div>
+    <div class="sig-cell"><div class="fld" contenteditable></div><span class="lbl">Cell Phone</span></div>
+    <div class="sig-cell"><div class="fld" contenteditable></div><span class="lbl">Truck&nbsp;#</span></div>
+    <div class="sig-cell"><div class="fld" contenteditable></div><span class="lbl">Trailer&nbsp;#</span></div>
+  </div>
+  <div class="pagemark">Page 2 of 2</div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // auto-sum carrier fees
+  function parseMoney(t){const n=parseFloat((t||'').replace(/[^0-9.\-]/g,''));return isNaN(n)?0:n;}
+  function recalc(){
+    let sum=0;
+    document.querySelectorAll('.fees .money').forEach(el=>sum+=parseMoney(el.textContent));
+    document.getElementById('totalA').textContent='$'+sum.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+  document.querySelectorAll('.fees .money').forEach(el=>el.addEventListener('input',recalc));
+  function clearAll(){
+    if(!confirm('Clear all entered fields?'))return;
+    document.querySelectorAll('[contenteditable]').forEach(el=>el.textContent='');
+    document.querySelectorAll('[data-print-field="editor"]').forEach(syncPrintField);
+    recalc();
+  }
+
+  // PDF printers are more reliable with plain text nodes than contenteditable fields.
+  function getPrintText(el){
+    return (el.textContent || '').replace(/\u00a0/g, ' ').trim();
+  }
+  function syncPrintField(el){
+    const printEl = el.nextElementSibling && el.nextElementSibling.classList.contains('print-fld')
+      ? el.nextElementSibling
+      : null;
+    if(printEl) printEl.textContent = getPrintText(el);
+  }
+  function setupPrintFields(){
+    document.querySelectorAll('[contenteditable]').forEach(el=>{
+      el.dataset.printField = 'editor';
+      let printEl = el.nextElementSibling && el.nextElementSibling.classList.contains('print-fld')
+        ? el.nextElementSibling
+        : null;
+      if(!printEl){
+        printEl = document.createElement(el.tagName.toLowerCase());
+        printEl.className = el.className + ' print-fld';
+        el.insertAdjacentElement('afterend', printEl);
+      }
+      syncPrintField(el);
+      el.addEventListener('input', ()=>syncPrintField(el));
+    });
+  }
+  function prepareForPrint(){
+    document.querySelectorAll('[data-print-field="editor"]').forEach(syncPrintField);
+    recalc();
+  }
+  function printPdf(){
+    prepareForPrint();
+    window.print();
+  }
+  setupPrintFields();
+  window.addEventListener('beforeprint', prepareForPrint);
+</script>
+</body>
+</html>
+
