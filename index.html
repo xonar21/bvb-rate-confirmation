@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rate Confirmation — Classic</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#102242; --navy-2:#1c3155; --gold:#cf9032; --gold-2:#e0b25e;
@@ -17,7 +14,7 @@
   html,body{margin:0;padding:0;}
   body{
     background:#5a606b;
-    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    font-family:Verdana, Arial, sans-serif;
     color:var(--ink);
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
@@ -30,11 +27,11 @@
     background:rgba(16,34,66,.96); backdrop-filter:blur(6px);
     box-shadow:0 2px 14px rgba(0,0,0,.25);
   }
-  .toolbar .tb-title{color:#fff;font-family:'Archivo';font-weight:700;font-size:13px;letter-spacing:.04em;}
+  .toolbar .tb-title{color:#fff;font-family:Verdana, Arial, sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;}
   .toolbar .tb-tag{color:var(--gold-2);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;}
   .toolbar .spacer{flex:1;}
   .toolbar button{
-    font-family:'IBM Plex Sans';font-size:12px;font-weight:600;
+    font-family:Verdana, Arial, sans-serif;font-size:12px;font-weight:600;
     border:1px solid rgba(255,255,255,.25); background:transparent;color:#fff;
     padding:7px 14px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:7px;
     transition:.15s;
@@ -58,17 +55,17 @@
   .hdr .logo{height:100px;display:block;}
   .hdr .title-wrap{text-align:center;padding-top:0;width:100%;}
   .hdr h1{
-    font-family:'Archivo';font-weight:800;font-size:18px;line-height:1.05;
+    font-family:Verdana, Arial, sans-serif;font-weight:800;font-size:18px;line-height:1.05;
     color:var(--navy);margin:0;letter-spacing:-.01em;text-transform:uppercase;
   }
   .hdr .sub{font-size:10px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-top:5px;font-weight:600;}
-  .rule{height:3px;background:var(--navy);margin:9px 0 0;position:relative;border-radius:2px;}
+  .rule{height:2px;background:var(--navy);margin:9px 0 0;position:relative;border-radius:2px;}
 
   /* ---------- generic field ---------- */
   .lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);}
   .lbl .gold{color:var(--gold);}
   .fld{
-    font-family:'IBM Plex Sans';font-size:11px;font-weight:500;color:var(--navy);
+    font-family:Verdana, Arial, sans-serif;font-size:11px;font-weight:500;color:var(--navy);
     min-height:16px; line-height:1.32; outline:none; white-space:pre-wrap; word-break:break-word;
     -webkit-user-select:text; user-select:text;
   }
@@ -92,7 +89,7 @@
     background:var(--navy);color:#fff;padding:6px 11px;
   }
   .sec-head .tick{width:5px;height:15px;background:var(--gold);border-radius:2px;}
-  .sec-head h2{font-family:'Archivo';font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;}
+  .sec-head h2{font-family:Verdana, Arial, sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;}
   .sec-head .badge{margin-left:auto;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-2);}
 
   .stop-body{display:grid;grid-template-columns:1fr 1fr;}
@@ -111,7 +108,7 @@
   .tbl-wrap{margin-top:12px;}
   .tbl-title{display:flex;align-items:center;gap:9px;margin-bottom:5px;}
   .tbl-title .tick{width:5px;height:14px;background:var(--gold);border-radius:2px;}
-  .tbl-title h2{font-family:'Archivo';font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);margin:0;}
+  .tbl-title h2{font-family:Verdana, Arial, sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);margin:0;}
   table{width:100%;border-collapse:collapse;table-layout:fixed;}
   .ship th,.ship td{border:1px solid var(--line);padding:0;vertical-align:top;}
   .ship thead th{background:var(--navy);color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;text-align:left;}
@@ -125,7 +122,7 @@
   .fees tr:first-child td{border-top:none;}
   .fees .desc{width:100%;border-right:none;}
   .fees .lab{
-    font-family:'Archivo';
+    font-family:Verdana, Arial, sans-serif;
     font-size:11px;
     font-weight:700;
     color:var(--navy);
@@ -137,7 +134,7 @@
     padding:7px 11px;
     text-align:right;
     font-variant-numeric:tabular-nums;
-    font-family:'Archivo';
+    font-family:Verdana, Arial, sans-serif;
     font-weight:700;
     font-size:13px;
     color:var(--navy);
@@ -153,7 +150,7 @@
   .fees .total .amt .fld{
     background:#fff;
     color:var(--navy);
-    font-family:'Archivo';
+    font-family:Verdana, Arial, sans-serif;
     font-weight:700;
     font-size:13px;
     text-align:right;
@@ -161,7 +158,7 @@
     min-height:16px;
   }
   .fees .total .amt .fld::first-letter{
-    font-family:Helvetica, Arial, sans-serif;
+    font-family:Verdana, Arial, sans-serif;
     font-size:13px;
     font-weight:400;
     line-height:1;
@@ -175,7 +172,7 @@
   .fees .desc .fld:empty:before{
     content:attr(data-ph);
     color:#9aa3ae;
-    font-family:'Archivo';
+    font-family:Verdana, Arial, sans-serif;
     font-weight:700;
     font-size:13px;
   }
@@ -186,32 +183,37 @@
   .sheet > .foot{margin-top:auto;}
   .sign-row{display:flex;align-items:center;gap:20px;padding-top:9px;}
   .sign-row .note{font-size:8px;color:var(--muted);flex:0 0 255px;line-height:1.2;font-weight:600;letter-spacing:.02em;white-space:nowrap;transform:translateY(3px);}
-  .sign-row .sign-field{flex:1;display:flex;align-items:flex-end;gap:8px;}
+  .sign-row .sign-field{flex:0 0 auto;display:flex;align-items:flex-end;gap:8px;}
   .sign-row .sign-field .lbl{white-space:nowrap;}
-  .sign-row .sign-field .fld{flex:1;border-bottom:1.5px solid var(--navy);min-height:18px;}
-  .pagemark{position:absolute;bottom:0.22in;left:0;right:0;text-align:center;font-size:12px;color:var(--navy);letter-spacing:-0.04em;font-weight:700;}
+  .sign-row .sign-field .fld{flex:0 0 95px;border-bottom:1.5px solid var(--navy);min-height:18px;}
+  .pagemark{position:absolute;bottom:0.22in;left:0;right:0;text-align:center;font-size:10px;color:var(--navy);letter-spacing:-0.04em;font-weight:700;}
 
   /* page 2 terms */
-  .terms-head{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--navy);padding-bottom:8px;}
+  .terms-head{display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--navy);padding-bottom:8px;}
   .terms-head img{height:80px;display:block;}
-  .terms-head h1{font-family:'Archivo';font-weight:800;font-size:16px;letter-spacing:-.01em;text-transform:uppercase;color:var(--navy);margin:0;}
+  .terms-head h1{font-family:Verdana, Arial, sans-serif;font-weight:800;font-size:15px;letter-spacing:-.01em;text-transform:uppercase;color:var(--navy);margin:0;}
   .terms-head h1 small{display:block;font-size:8.5px;letter-spacing:.16em;color:var(--gold);font-weight:700;margin-top:2px;}
-  .intro{font-size:10.6px;line-height:1.5;color:var(--navy);margin:11px 0 9px;font-weight:700;text-align:justify;hyphens:auto;}
+  .intro{font-size:9.6px;line-height:1.5;color:var(--navy);margin:11px 0 9px;font-weight:700;text-align:justify;hyphens:auto;}
   ol.terms{margin:0;padding-left:16px;columns:1;}
-  ol.terms li{font-size:10.2px;line-height:1.45;margin-bottom:3.5px;color:var(--navy);font-weight:700;text-align:justify;hyphens:auto;}
+  ol.terms li{font-size:9.2px;line-height:1.45;margin-bottom:3.5px;color:var(--navy);font-weight:700;text-align:justify;hyphens:auto;}
   ol.terms li strong{color:var(--navy);}
-  .ins-para{font-size:10.2px;line-height:1.5;color:var(--navy);margin:9px 0;font-weight:700;text-align:justify;hyphens:auto;}
+  .ins-para{font-size:9.2px;line-height:1.5;color:var(--navy);margin:9px 0;font-weight:700;text-align:justify;hyphens:auto;}
   .accept{font-size:10.6px;font-weight:700;color:var(--navy);background:#f3f1e6;border-left:3px solid var(--gold);padding:7px 10px;border-radius:0 5px 5px 0;margin-top:8px;}
 
-  .accept-grid{margin-top:14px;display:grid;grid-template-columns:1.35fr .75fr 1.25fr;gap:14px 30px;padding-top:13px;}
+  .accept-grid{margin-top:14px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 10px;padding-top:13px;}
   .sig-cell{display:flex;align-items:flex-end;gap:6px;min-width:0;}
-  .sig-cell .fld{flex:1;border-bottom:1.5px solid var(--navy);min-height:18px;}
+  .sig-cell .fld{flex:0 0 var(--sig-line-width, 110px);border-bottom:1.5px solid var(--navy);min-height:18px;}
   .sig-cell .lbl{font-size:12px;line-height:1.1;white-space:nowrap;}
-  .sig-cell.driver{grid-column:span 1;}
-  .sig-cell.phone{grid-column:span 1;}
-  .sig-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-width:0;}
+  .accept-grid > .sig-cell:nth-child(-n+3){--sig-line-width:110px;}
+  .sig-cell.driver,
+  .sig-cell.phone{--sig-line-width:110px;}
+  .sig-pair{display:contents;}
+  .sig-pair .sig-cell{--sig-line-width:34px;}
 
   @media print{
+    *, *::before, *::after{
+      font-family:Verdana, Arial, sans-serif !important;
+    }
     body{background:#fff;}
     .toolbar{display:none;}
     .sheet{
@@ -239,7 +241,7 @@
       display:block !important;
       background:transparent !important;
       color:var(--navy) !important;
-      font-family:'IBM Plex Sans', Arial, Helvetica, sans-serif !important;
+      font-family:Verdana, Arial, sans-serif !important;
       line-height:1.32 !important;
       white-space:pre-wrap !important;
       word-break:break-word !important;
@@ -249,7 +251,7 @@
     .fees .desc .print-fld{
       min-height:16px !important;
       padding:7px 11px !important;
-      font-family:'Archivo', Arial, Helvetica, sans-serif !important;
+      font-family:Verdana, Arial, sans-serif !important;
       font-size:13px !important;
       font-weight:700 !important;
       line-height:1.32 !important;
@@ -260,7 +262,7 @@
     }
     .fees .total .amt .print-fld{
       color:var(--navy) !important;
-      font-family:'Archivo', Arial, Helvetica, sans-serif !important;
+      font-family:Verdana, Arial, sans-serif !important;
       font-size:13px !important;
       font-weight:700 !important;
       text-align:right !important;
@@ -301,7 +303,7 @@
     <div class="cell span4"><span class="lbl">Broker Phone</span><div class="fld" contenteditable data-ph="(000) 000-0000"></div></div>
 
     <div class="cell span6"><span class="lbl">Carrier Name</span><div class="fld" contenteditable data-ph="Full carrier / company name (grows for long names)"></div></div>
-    <div class="cell span3"><span class="lbl">Carrier MC&nbsp;#</span><div class="fld" contenteditable data-ph="—"></div></div>
+    <div class="cell span3"><span class="lbl">Carrier MC#</span><div class="fld" contenteditable data-ph="—"></div></div>
     <div class="cell span3"><span class="lbl">Equipment Type</span><div class="fld" contenteditable data-ph="e.g. 53' Van / Reefer"></div></div>
   </div>
 
@@ -383,8 +385,8 @@
   <div class="foot">
     <div class="sign-row">
       <div class="note">Signing the first page implies agreement with the policy and terms on page 2.</div>
-      <div class="sign-field"><span class="lbl">Carrier Signature</span><div class="fld" contenteditable></div></div>
-      <div class="sign-field" style="max-width:150px"><span class="lbl">Date</span><div class="fld" contenteditable></div></div>
+      <div class="sign-field"><span class="lbl">Signature</span><div class="fld" contenteditable></div></div>
+      <div class="sign-field"><span class="lbl">Date</span><div class="fld" contenteditable></div></div>
     </div>
   </div>
   <div class="pagemark">Page 1 Of 2</div>
