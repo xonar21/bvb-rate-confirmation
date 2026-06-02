@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rate Confirmation — Classic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#102242; --navy-2:#1c3155; --gold:#cf9032; --gold-2:#e0b25e;
@@ -14,7 +17,7 @@
   html,body{margin:0;padding:0;}
   body{
     background:#5a606b;
-    font-family:Verdana, Arial, sans-serif;
+    font-family:'Roboto', Arial, sans-serif;
     color:var(--ink);
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
@@ -27,11 +30,11 @@
     background:rgba(16,34,66,.96); backdrop-filter:blur(6px);
     box-shadow:0 2px 14px rgba(0,0,0,.25);
   }
-  .toolbar .tb-title{color:#fff;font-family:Verdana, Arial, sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;}
+  .toolbar .tb-title{color:#fff;font-family:'Roboto', Arial, sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;}
   .toolbar .tb-tag{color:var(--gold-2);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;}
   .toolbar .spacer{flex:1;}
   .toolbar button{
-    font-family:Verdana, Arial, sans-serif;font-size:12px;font-weight:600;
+    font-family:'Roboto', Arial, sans-serif;font-size:12px;font-weight:600;
     border:1px solid rgba(255,255,255,.25); background:transparent;color:#fff;
     padding:7px 14px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:7px;
     transition:.15s;
@@ -55,7 +58,7 @@
   .hdr .logo{height:100px;display:block;}
   .hdr .title-wrap{text-align:center;padding-top:0;width:100%;}
   .hdr h1{
-    font-family:Verdana, Arial, sans-serif;font-weight:800;font-size:18px;line-height:1.05;
+    font-family:'Roboto', Arial, sans-serif;font-weight:800;font-size:18px;line-height:1.05;
     color:var(--navy);margin:0;letter-spacing:-.01em;text-transform:uppercase;
   }
   .hdr .sub{font-size:10px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-top:5px;font-weight:600;}
@@ -65,7 +68,7 @@
   .lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);}
   .lbl .gold{color:var(--gold);}
   .fld{
-    font-family:Verdana, Arial, sans-serif;font-size:11px;font-weight:500;color:var(--navy);
+    font-family:'Roboto', Arial, sans-serif;font-size:11px;font-weight:500;color:var(--navy);
     min-height:16px; line-height:1.32; outline:none; white-space:pre-wrap; word-break:break-word;
     -webkit-user-select:text; user-select:text;
   }
@@ -89,7 +92,7 @@
     background:var(--navy);color:#fff;padding:6px 11px;
   }
   .sec-head .tick{width:5px;height:15px;background:var(--gold);border-radius:2px;}
-  .sec-head h2{font-family:Verdana, Arial, sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;}
+  .sec-head h2{font-family:'Roboto', Arial, sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;}
   .sec-head .badge{margin-left:auto;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-2);}
 
   .stop-body{display:grid;grid-template-columns:1fr 1fr;}
@@ -108,7 +111,7 @@
   .tbl-wrap{margin-top:12px;}
   .tbl-title{display:flex;align-items:center;gap:9px;margin-bottom:5px;}
   .tbl-title .tick{width:5px;height:14px;background:var(--gold);border-radius:2px;}
-  .tbl-title h2{font-family:Verdana, Arial, sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);margin:0;}
+  .tbl-title h2{font-family:'Roboto', Arial, sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);margin:0;}
   table{width:100%;border-collapse:collapse;table-layout:fixed;}
   .ship th,.ship td{border:1px solid var(--line);padding:0;vertical-align:top;}
   .ship thead th{background:var(--navy);color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;text-align:left;}
@@ -122,7 +125,7 @@
   .fees tr:first-child td{border-top:none;}
   .fees .desc{width:100%;border-right:none;}
   .fees .lab{
-    font-family:Verdana, Arial, sans-serif;
+    font-family:'Roboto', Arial, sans-serif;
     font-size:11px;
     font-weight:700;
     color:var(--navy);
@@ -134,7 +137,7 @@
     padding:7px 11px;
     text-align:right;
     font-variant-numeric:tabular-nums;
-    font-family:Verdana, Arial, sans-serif;
+    font-family:'Roboto', Arial, sans-serif;
     font-weight:700;
     font-size:13px;
     color:var(--navy);
@@ -150,7 +153,7 @@
   .fees .total .amt .fld{
     background:#fff;
     color:var(--navy);
-    font-family:Verdana, Arial, sans-serif;
+    font-family:'Roboto', Arial, sans-serif;
     font-weight:700;
     font-size:13px;
     text-align:right;
@@ -158,7 +161,7 @@
     min-height:16px;
   }
   .fees .total .amt .fld::first-letter{
-    font-family:Verdana, Arial, sans-serif;
+    font-family:'Roboto', Arial, sans-serif;
     font-size:13px;
     font-weight:400;
     line-height:1;
@@ -172,7 +175,7 @@
   .fees .desc .fld:empty:before{
     content:attr(data-ph);
     color:#9aa3ae;
-    font-family:Verdana, Arial, sans-serif;
+    font-family:'Roboto', Arial, sans-serif;
     font-weight:700;
     font-size:13px;
   }
@@ -191,7 +194,7 @@
   /* page 2 terms */
   .terms-head{display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--navy);padding-bottom:8px;}
   .terms-head img{height:80px;display:block;}
-  .terms-head h1{font-family:Verdana, Arial, sans-serif;font-weight:800;font-size:15px;letter-spacing:-.01em;text-transform:uppercase;color:var(--navy);margin:0;}
+  .terms-head h1{font-family:'Roboto', Arial, sans-serif;font-weight:800;font-size:15px;letter-spacing:-.01em;text-transform:uppercase;color:var(--navy);margin:0;}
   .terms-head h1 small{display:block;font-size:8.5px;letter-spacing:.16em;color:var(--gold);font-weight:700;margin-top:2px;}
   .intro{font-size:9.6px;line-height:1.5;color:var(--navy);margin:11px 0 9px;font-weight:700;text-align:justify;hyphens:auto;}
   ol.terms{margin:0;padding-left:16px;columns:1;}
@@ -212,7 +215,7 @@
 
   @media print{
     *, *::before, *::after{
-      font-family:Verdana, Arial, sans-serif !important;
+      font-family:'Roboto', Arial, sans-serif !important;
     }
     body{background:#fff;}
     .toolbar{display:none;}
@@ -241,7 +244,7 @@
       display:block !important;
       background:transparent !important;
       color:var(--navy) !important;
-      font-family:Verdana, Arial, sans-serif !important;
+      font-family:'Roboto', Arial, sans-serif !important;
       line-height:1.32 !important;
       white-space:pre-wrap !important;
       word-break:break-word !important;
@@ -251,7 +254,7 @@
     .fees .desc .print-fld{
       min-height:16px !important;
       padding:7px 11px !important;
-      font-family:Verdana, Arial, sans-serif !important;
+      font-family:'Roboto', Arial, sans-serif !important;
       font-size:13px !important;
       font-weight:700 !important;
       line-height:1.32 !important;
@@ -262,7 +265,7 @@
     }
     .fees .total .amt .print-fld{
       color:var(--navy) !important;
-      font-family:Verdana, Arial, sans-serif !important;
+      font-family:'Roboto', Arial, sans-serif !important;
       font-size:13px !important;
       font-weight:700 !important;
       text-align:right !important;
