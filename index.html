@@ -232,9 +232,11 @@
     }
     .sheet:last-child{page-break-after:auto;break-after:auto;}
     .pagemark{
-      position:static;
-      margin-top:auto;
-      padding-top:0.12in;
+      position:absolute;
+      bottom:0.22in;
+      left:0;
+      right:0;
+      text-align:center;
     }
     .foot + .pagemark{
       margin-top:0;
@@ -292,7 +294,7 @@
 <!-- ============ PAGE 1 ============ -->
 <div class="sheet" data-screen-label="Design A — Page 1">
   <div class="hdr">
-    <img class="logo" src="full-logo.png" alt="BVB — Best Value Brokerage">
+    <img class="logo" id="rc-logo" src="full-logo.png" alt="BVB — Best Value Brokerage">
     <div class="title-wrap">
       <h1>Carrier Rate and Load Confirmation</h1>
     </div>
@@ -301,13 +303,13 @@
 
   <!-- meta grid -->
   <div class="meta">
-    <div class="cell fill span4"><span class="lbl">Load Number</span><div class="fld" contenteditable data-ph="—"></div></div>
-    <div class="cell span4"><span class="lbl">Broker Name</span><div class="fld" contenteditable data-ph="Name"></div></div>
-    <div class="cell span4"><span class="lbl">Broker Phone</span><div class="fld" contenteditable data-ph="(000) 000-0000"></div></div>
+    <div class="cell fill span4"><span class="lbl">Load Number</span><div class="fld" contenteditable data-ph="—" data-field="loadNumber"></div></div>
+    <div class="cell span4"><span class="lbl">Broker Name</span><div class="fld" contenteditable data-ph="Name" data-field="brokerName"></div></div>
+    <div class="cell span4"><span class="lbl">Broker Phone</span><div class="fld" contenteditable data-ph="(000) 000-0000" data-field="brokerPhone"></div></div>
 
-    <div class="cell span6"><span class="lbl">Carrier Name</span><div class="fld" contenteditable data-ph="Full carrier / company name (grows for long names)"></div></div>
-    <div class="cell span3"><span class="lbl">Carrier MC#</span><div class="fld" contenteditable data-ph="—"></div></div>
-    <div class="cell span3"><span class="lbl">Equipment Type</span><div class="fld" contenteditable data-ph="e.g. 53' Van / Reefer"></div></div>
+    <div class="cell span6"><span class="lbl">Carrier Name</span><div class="fld" contenteditable data-ph="Full carrier / company name (grows for long names)" data-field="carrierName"></div></div>
+    <div class="cell span3"><span class="lbl">Carrier MC#</span><div class="fld" contenteditable data-ph="—" data-field="carrierMC"></div></div>
+    <div class="cell span3"><span class="lbl">Equipment Type</span><div class="fld" contenteditable data-ph="e.g. 53' Van / Reefer" data-field="equipmentType"></div></div>
   </div>
 
   <!-- pickup -->
@@ -315,12 +317,12 @@
     <div class="sec-head"><span class="tick"></span><h2>Shipper — Pickup</h2></div>
     <div class="stop-body">
       <div class="left">
-        <div class="field-block"><span class="lbl">Shipper Name and Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
-        <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  ·  time"></div></div>
+        <div class="field-block"><span class="lbl">Shipper Name and Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP" data-field="shipperAddress"></div></div>
+        <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  ·  time" data-field="pickupDate"></div></div>
       </div>
       <div class="right">
-        <div class="field-block"><span class="lbl">Pickup Instructions</span><div class="fld instr" contenteditable data-ph="Appointment, dock, ref #..."></div></div>
-        <div class="field-block"><span class="lbl">Shipper References</span><div class="fld instr" contenteditable data-ph="PO / BOL / pickup #"></div></div>
+        <div class="field-block"><span class="lbl">Pickup Instructions</span><div class="fld instr" contenteditable data-ph="Appointment, dock, ref #..." data-field="pickupInstructions"></div></div>
+        <div class="field-block"><span class="lbl">Shipper References</span><div class="fld instr" contenteditable data-ph="PO / BOL / pickup #" data-field="shipperRefs"></div></div>
       </div>
     </div>
   </div>
@@ -330,12 +332,12 @@
     <div class="sec-head"><span class="tick"></span><h2>Consignee — Delivery</h2></div>
     <div class="stop-body">
       <div class="left">
-        <div class="field-block"><span class="lbl">Consignee Name and Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP"></div></div>
-        <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  ·  time"></div></div>
+        <div class="field-block"><span class="lbl">Consignee Name and Address</span><div class="fld addr" contenteditable data-ph="Company name&#10;Street&#10;City, State ZIP" data-field="consigneeAddress"></div></div>
+        <div class="date-row"><span class="lbl">Expected Date</span><div class="fld" contenteditable data-ph="MM / DD / YYYY  ·  time" data-field="deliveryDate"></div></div>
       </div>
       <div class="right">
-        <div class="field-block"><span class="lbl">Delivery Instructions</span><div class="fld instr" contenteditable data-ph="Appointment, dock, ref #..."></div></div>
-        <div class="field-block"><span class="lbl">Consignee References</span><div class="fld instr" contenteditable data-ph="PO / delivery #"></div></div>
+        <div class="field-block"><span class="lbl">Delivery Instructions</span><div class="fld instr" contenteditable data-ph="Appointment, dock, ref #..." data-field="deliveryInstructions"></div></div>
+        <div class="field-block"><span class="lbl">Consignee References</span><div class="fld instr" contenteditable data-ph="PO / delivery #" data-field="consigneeRefs"></div></div>
       </div>
     </div>
   </div>
@@ -361,15 +363,15 @@
       </thead>
       <tbody>
         <tr>
-          <td class="num"><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
-          <td class="num"><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
-          <td class="num"><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
-          <td><div class="fld" contenteditable></div></td>
+          <td class="num"><div class="fld" contenteditable data-field="shipQty1"></div></td>
+          <td><div class="fld" contenteditable data-field="shipType1"></div></td>
+          <td class="num"><div class="fld" contenteditable data-field="shipQty2"></div></td>
+          <td><div class="fld" contenteditable data-field="shipType2"></div></td>
+          <td><div class="fld" contenteditable data-field="shipWeight"></div></td>
+          <td class="num"><div class="fld" contenteditable data-field="shipHM"></div></td>
+          <td><div class="fld" contenteditable data-field="shipCommodity"></div></td>
+          <td><div class="fld" contenteditable data-field="shipNMFC"></div></td>
+          <td><div class="fld" contenteditable data-field="shipClass"></div></td>
         </tr>
       </tbody>
     </table>
@@ -379,17 +381,17 @@
   <div class="fees">
     <div class="tbl-title"><span class="tick"></span><h2>Carrier Fees</h2></div>
     <table>
-      <tr><td class="desc" colspan="2"><div class="fld" contenteditable data-ph="Description"></div></td></tr>
+      <tr><td class="desc" colspan="2"><div class="fld" contenteditable data-ph="Description" data-field="feeDescription"></div></td></tr>
       <tr><td class="desc lab">Net Line Haul</td><td class="amt"><div class="fld" data-ph="$0.00"></div></td></tr>
-      <tr class="total"><td class="lab">Total Cost</td><td class="amt"><div class="fld money" contenteditable data-ph="$0.00" id="totalA" inputmode="decimal" spellcheck="false"></div></td></tr>
+      <tr class="total"><td class="lab">Total Cost</td><td class="amt"><div class="fld money" contenteditable data-ph="$0.00" id="totalA" data-field="totalCost" inputmode="decimal" spellcheck="false"></div></td></tr>
     </table>
   </div>
 
   <div class="foot">
     <div class="sign-row">
       <div class="note">Signing the first page implies agreement with the policy and terms on page 2.</div>
-      <div class="sign-field"><span class="lbl">Signature</span><div class="fld" contenteditable></div></div>
-      <div class="sign-field"><span class="lbl">Date</span><div class="fld" contenteditable></div></div>
+      <div class="sign-field"><span class="lbl">Signature</span><div class="fld" contenteditable data-field="p1Signature"></div></div>
+      <div class="sign-field"><span class="lbl">Date</span><div class="fld" contenteditable data-field="p1Date"></div></div>
     </div>
   </div>
   <div class="pagemark">Page 1 Of 2</div>
@@ -428,20 +430,20 @@
   <div class="accept">ACCEPTANCE OF THE BVB EXPRESS LLC SHIPMENT AND RATE CONFIRMATION SIGNIFIES ADHERENCE TO THESE TERMS AND CONDITIONS.</div>
 
   <div class="accept-grid">
-    <div class="sig-cell"><span class="lbl">Load Accepted By:</span><div class="fld" contenteditable></div></div>
-    <div class="sig-cell"><span class="lbl">Date:</span><div class="fld" contenteditable></div></div>
-    <div class="sig-cell"><span class="lbl">Signature:</span><div class="fld" contenteditable></div></div>
-    <div class="sig-cell driver"><span class="lbl">Driver Name:</span><div class="fld" contenteditable></div></div>
-    <div class="sig-cell phone"><span class="lbl">Cell Phone:</span><div class="fld" contenteditable></div></div>
+    <div class="sig-cell"><span class="lbl">Load Accepted By:</span><div class="fld" contenteditable data-field="acceptedBy"></div></div>
+    <div class="sig-cell"><span class="lbl">Date:</span><div class="fld" contenteditable data-field="acceptDate"></div></div>
+    <div class="sig-cell"><span class="lbl">Signature:</span><div class="fld" contenteditable data-field="acceptSignature"></div></div>
+    <div class="sig-cell driver"><span class="lbl">Driver Name:</span><div class="fld" contenteditable data-field="driverName"></div></div>
+    <div class="sig-cell phone"><span class="lbl">Cell Phone:</span><div class="fld" contenteditable data-field="driverPhone"></div></div>
     <div class="sig-pair">
-      <div class="sig-cell"><span class="lbl">Truck #:</span><div class="fld" contenteditable></div></div>
-      <div class="sig-cell"><span class="lbl">Trailer#:</span><div class="fld" contenteditable></div></div>
+      <div class="sig-cell"><span class="lbl">Truck #:</span><div class="fld" contenteditable data-field="truckNum"></div></div>
+      <div class="sig-cell"><span class="lbl">Trailer#:</span><div class="fld" contenteditable data-field="trailerNum"></div></div>
     </div>
   </div>
   <div class="pagemark">Page 2 Of 2</div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // auto-sum carrier fees
   function parseMoney(t){const n=parseFloat((t||'').replace(/[^0-9.\-]/g,''));return isNaN(n)?0:n;}
   function formatMoneyValue(raw){
@@ -603,6 +605,85 @@
   }
   setupPrintFields();
   window.addEventListener('beforeprint', prepareForPrint);
+
+  // ─── postMessage support (admin preview iframe) ──────────────────────────────
+  window.addEventListener('message', function(event) {
+    if (!event.data || event.data.type !== 'RATECON_FILL') return;
+    var data = event.data.data;
+    if (!data || typeof data !== 'object') return;
+    Object.keys(data).forEach(function(key) {
+      var val = data[key];
+      if (!val) return;
+      var el = document.querySelector('[data-field="' + key + '"]');
+      if (!el) return;
+      if (String(val).startsWith('data:image')) {
+        var makeImgMsg = function() {
+          var i = document.createElement('img');
+          i.src = String(val);
+          i.style.cssText = 'max-height:22px;max-width:90px;object-fit:contain;vertical-align:bottom;display:inline-block;';
+          return i;
+        };
+        el.innerHTML = ''; el.appendChild(makeImgMsg());
+        var pf = el.nextElementSibling;
+        if (pf && pf.classList && pf.classList.contains('print-fld')) {
+          pf.innerHTML = ''; pf.appendChild(makeImgMsg());
+        }
+      } else {
+        el.textContent = String(val);
+        syncPrintField(el);
+      }
+    });
+  });
+
+  // ─── RATECON_DATA / RATECON_READONLY support ─────────────────────────────────
+  // When embedded in the sign page, window.RATECON_DATA is injected by the server
+  // and window.RATECON_READONLY disables editing for the carrier view.
+  (function(){
+    var data = window.RATECON_DATA;
+    if (data && typeof data === 'object') {
+      if (data.logoUrl) {
+        var logo = document.getElementById('rc-logo');
+        if (logo) logo.src = data.logoUrl;
+      }
+      Object.keys(data).forEach(function(key) {
+        if (key === 'logoUrl') return;
+        var val = data[key];
+        if (!val) return;
+        var el = document.querySelector('[data-field="' + key + '"]');
+        if (!el) return;
+        // Signature fields: inject as inline image instead of text
+        if (String(val).startsWith('data:image')) {
+          var makeImg = function() {
+            var i = document.createElement('img');
+            i.src = String(val);
+            i.style.cssText = 'max-height:22px;max-width:90px;object-fit:contain;vertical-align:bottom;display:inline-block;';
+            return i;
+          };
+          el.innerHTML = ''; el.appendChild(makeImg());
+          // Sync to .print-fld so the signature appears in PDF/print output
+          var pf = el.nextElementSibling;
+          if (pf && pf.classList && pf.classList.contains('print-fld')) {
+            pf.innerHTML = ''; pf.appendChild(makeImg());
+          }
+        } else {
+          el.textContent = String(val);
+          syncPrintField(el);
+        }
+      });
+    }
+    if (window.RATECON_READONLY) {
+      document.querySelectorAll('[contenteditable]').forEach(function(el) {
+        el.removeAttribute('contenteditable');
+      });
+      var toolbar = document.querySelector('.toolbar');
+      if (toolbar) toolbar.style.display = 'none';
+      document.querySelectorAll('.sheet').forEach(function(s) {
+        s.style.marginTop = '28px';
+      });
+    }
+    // Signal to gotenberg that all fields have been processed and the PDF can be generated.
+    window.RATECON_PROCESSED = true;
+  })();
 </script>
 </body>
 </html>
